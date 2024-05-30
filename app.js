@@ -5,9 +5,7 @@ const errorMesg = document.querySelector("#error-message");
 
 formEl.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (!formEl.input.value.trim()) {
-    errorMesg.textContent = "Iltimos nimadr yozing :(";
-  } else {
+  if (formEl.input.value.trim()) {
     const li = document.createElement("li");
     const spanRound = document.createElement("span");
     const icon = document.createElement("i");
@@ -16,14 +14,11 @@ formEl.addEventListener("submit", (e) => {
     spanRound.classList.add("spancha");
     li.classList.add("li-style");
     paragrfText.textContent = formEl.input.value;
-    //   spanRound.appendChild(icon);
     li.appendChild(spanRound);
     li.appendChild(paragrfText);
     ulEl.appendChild(li);
     errorMesg.textContent = "";
-
     formEl.input.value = "";
-
     li.addEventListener("dblclick", (e) => {
       li.classList.toggle("complated");
       if (li.classList.contains("complated")) {
@@ -34,5 +29,9 @@ formEl.addEventListener("submit", (e) => {
         spanRound.classList.remove("linear-gradient");
       }
     });
+  } else {
+    errorMesg.textContent = "You should write something :(";
+    errorMesg.style.color = "darkred";
+    errorMesg.style.fontWeight = "bold";
   }
 });
